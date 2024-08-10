@@ -1,6 +1,7 @@
+from datetime import datetime
+import webbrowser as wb
 import streamlit as st
 import pandas as pd
-from datetime import datetime
 
 st.set_page_config( ## Configurações da página web do streamlit
     page_title="Home - FIFA", ## Titulo da página
@@ -16,3 +17,13 @@ if "data" not in st.session_state:
     df_data = df_data[df_data["Value(£)"] > 0] ## Filtrar por valores acima de 0
     df_data = df_data.sort_values(by="Overall", ascending=False) ## Ordenar por ordem de overall
     st.session_state["data"] = df_data ## Colocar o df filtrado e "tratado" no session state
+
+st.title("DADOS OFICIAIS DA FIFA ⚽️!")
+st.sidebar.write("Desenvolvido por [Felipe Barbour](https://www.linkedin.com/in/felipebarbour/)")
+
+btn = st.button("Acesse os dados no Kaggle")
+
+if btn:
+    wb.open_new_tab("https://www.kaggle.com/datasets/kevwesophia/fifa23-official-datasetclean-data")
+    
+st.write("Este conjunto de dados cobre uma ampla gama de informações sobre jogadores de futebol profissional de 2017 a 2023. Ele inclui dados demográficos, características físicas, estatísticas de desempenho em jogos, detalhes contratuais e afiliações a clubes. Com mais de 17.000 registros, este recurso é valioso para analistas, pesquisadores e entusiastas do futebol que desejam explorar e estudar diversos aspectos do esporte, desde atributos individuais dos jogadores até métricas de desempenho coletivo.")
